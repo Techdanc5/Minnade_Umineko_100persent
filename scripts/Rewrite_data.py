@@ -14,4 +14,4 @@ df_calc["Samai"] = df_calc["UseMedals"] - df_calc["GetMedals"]
 
 df_calc.to_csv("D:/Python_Project/Minnnade_Umineko/scripts/UseData.csv", index=False)
 
-print("Rewritedata処理完了")
+print("RewriteData処理完了")
