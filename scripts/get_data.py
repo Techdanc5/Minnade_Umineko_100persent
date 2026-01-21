@@ -1,6 +1,8 @@
 import gspread
 import pandas as pd
 from google.oauth2.service_account import Credentials
+import json
+import os
 
 # 認証スコープ
 scope = [
@@ -8,12 +10,14 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
+# 認証情報読み込み・ローカル実行時
+#credentials = Credentials.from_service_account_file(
+#    "json/umineko-484407-5b4367aa7a8e.json",
+#    scopes=scope
+#)
 
-# 認証情報読み込み
-credentials = Credentials.from_service_account_file(
-    "json/umineko-484407-5b4367aa7a8e.json",
-    scopes=scope
-)
+#認証情報読み込み・GithubActions向け
+credentials = json.loads(os.environ["GOOGLE_CREDENTIALS"])
 
 # クライアント生成
 gc = gspread.authorize(credentials)
@@ -39,7 +43,7 @@ df.rename(columns={
     )
 
 #ローカルのcsvへ書き込み
-output_path = r"D:/Python_Project/Minnnade_Umineko/scripts/GetData.csv"
+output_path = r"./scripts/GetData.csv"
 df.to_csv(
     output_path,
     index=False,
