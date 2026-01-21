@@ -14,10 +14,10 @@ html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>CSV データ公開</title>
+<title>みんなでうみねこ</title>
 </head>
 <body>
-<h1>CSV データ一覧</h1>
+<h1>みんなでうみねこ</h1>
 {table_html}
 </body>
 </html>
