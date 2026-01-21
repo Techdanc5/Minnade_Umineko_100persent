@@ -1,0 +1,49 @@
+import gspread
+import pandas as pd
+from google.oauth2.service_account import Credentials
+
+# 認証スコープ
+scope = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
+
+# 認証情報読み込み
+credentials = Credentials.from_service_account_file(
+    "json/umineko-484407-5b4367aa7a8e.json",
+    scopes=scope
+)
+
+# クライアント生成
+gc = gspread.authorize(credentials)
+
+# URLからスプシを読み込む
+spreadsheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/12I7OxaESbzjgXbSZj26gorqlCVuhnl8bCt_ZgpE4pdA/edit?resourcekey=&gid=785494444#gid=785494444')
+
+#データを取得するシートの指定
+worksheet = spreadsheet.worksheet("GetData")
+data = worksheet.get_all_records()
+df = pd.DataFrame(data)
+
+#タイムスタンプ行の削除
+df.drop(columns='タイムスタンプ', inplace=True)
+
+#ヘッダ名の変更
+df.rename(columns={
+    'ゲーム数' : 'GameCount',
+    '投入枚数' : 'UseMedals',
+    '回収枚数' : 'GetMedals'
+    },
+    inplace=True
+    )
+
+#ローカルのcsvへ書き込み
+output_path = r"D:/Python_Project/Minnnade_Umineko/scripts/GetData.csv"
+df.to_csv(
+    output_path,
+    index=False,
+    encoding="utf-8-sig"
+)
+
+print("GetData処理完了")
