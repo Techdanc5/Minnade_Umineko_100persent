@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas jinja2
+          pip install pandas jinja2 gspread 
 
       # 4. Runner.py を実行
       - name: Run Runner.py
