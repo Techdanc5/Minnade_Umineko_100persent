@@ -29,6 +29,8 @@ jobs:
 
       # 4. Runner.py を実行
       - name: Run Runner.py
+        env:
+           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
           python scripts/Runner.py
 

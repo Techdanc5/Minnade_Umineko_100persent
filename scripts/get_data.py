@@ -17,6 +17,9 @@ scope = [
 #)
 
 #認証情報読み込み・GithubActions向け
+if "GOOGLE_CREDENTIALS" not in os.environ:
+    raise RuntimeError("GOOGLE_CREDENTIALS is not set")
+
 credentials = json.loads(os.environ["GOOGLE_CREDENTIALS"])
 
 # クライアント生成
