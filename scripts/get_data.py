@@ -20,7 +20,11 @@ scope = [
 if "GOOGLE_CREDENTIALS" not in os.environ:
     raise RuntimeError("GOOGLE_CREDENTIALS is not set")
 
-credentials = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+cred_dict = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+credentials = Credentials.from_service_account_info(
+    cred_dict,
+    scopes=scope
+)
 
 # クライアント生成
 gc = gspread.authorize(credentials)
