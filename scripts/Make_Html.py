@@ -15,8 +15,8 @@ df2 = pd.read_csv("./scripts/GetData.csv")
 
 fig = px.line(
     df2,
-    x=df.columns[0],
-    y=df.columns[1]
+    x=df2.columns[0],
+    y=df2.columns[1]
 )
 
 #graph_htmlにfigureを格納
