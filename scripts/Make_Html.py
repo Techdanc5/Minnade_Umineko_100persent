@@ -15,11 +15,22 @@ table_html = df.to_html(
 #グラフ用データの格納
 df2 = pd.read_csv("./docs/UseData.csv")
 
+#列名の不可視文字・空白を除去
+df2.columns = (
+    df2.columns
+    .str.replace("\ufeff", "", regex=False)
+    .str.strip()
+)
+
+#数値に変換
+df2["GameCount"] = pd.to_numeric(df2["GameCount"], errors="coerce")
+df2["Samai"] = pd.to_numeric(df2["Samai"], errors="coerce")
+
+
 #plotlyの作成
 fig = px.line(
-    df2,
-    x="GameCount",
-    y="Samai",
+    x=df2["GameCount"],
+    y=df2["Samai"],
     markers=True,
     title="差枚グラフ"
 )
@@ -30,11 +41,11 @@ fig.update_xaxes(
         0,
         df2["GameCount"].max()*1.0
     ],
+    fixedrange=True,
     title="ゲーム数"
 )
 
 #y軸の表示倍率をフレキシブルに
-
 y_max = df2["Samai"].max()
 y_min = df2["Samai"].min()
 
@@ -43,13 +54,25 @@ fig.update_yaxes(
         min(0,y_min * 1.2),
         y_max * 1.2
     ],
+    fixedrange=True,
     title="差枚"
+)
+
+fig.update_traces(
+    line=dict(
+        width=2,
+        color="#000000"
+    ),
+    marker=dict(
+        size=5,
+        color="#000000"
+    )      # 点を大きく
 )
 
 #graph_htmlにfigureを格納
 graph_html = fig.to_html(
     full_html=False,
-    include_plotlyjs=False
+    include_plotlyjs="cdn"
 )
 
 # HTML 全体を組み立て
@@ -58,7 +81,6 @@ html = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <title>みんなでうみねこ</title>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
 
