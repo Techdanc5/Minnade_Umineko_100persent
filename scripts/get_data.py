@@ -50,7 +50,7 @@ df.rename(columns={
     )
 
 #ローカルのcsvへ書き込み
-output_path = r"./scripts/GetData.csv"
+output_path = r"./docs/GetData.csv"
 df.to_csv(
     output_path,
     index=False,

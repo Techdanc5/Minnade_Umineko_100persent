@@ -12,7 +12,7 @@ table_html = df.to_html(
     classes="data-table"
 )
 
-df2 = pd.read_csv("./scripts/GetData.csv")
+df2 = pd.read_csv("./docs/GetData.csv")
 
 fig = px.line(
     df2,

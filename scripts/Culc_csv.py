@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 df = pd.read_csv(
-    "./scripts/UseData.csv",             
+    "./docs/UseData.csv",             
     encoding="utf-8-sig"
     )
 
