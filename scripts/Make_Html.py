@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import plotly.express as px
-import pathlib
+from pathlib import Path
 
 #総計データとして載せる為のデータを格納
 df = pd.read_csv("./docs/WebData.csv")
