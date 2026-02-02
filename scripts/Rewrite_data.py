@@ -10,7 +10,7 @@ df = pd.read_csv(
 df_calc = df.copy()
 
 #各データの差枚数を計算し、"Samai"列を追加
-df_calc["Samai"] = df_calc["UseMedals"] - df_calc["GetMedals"]
+df_calc["Samai"] = df_calc["GetMedals"] - df_calc["UseMedals"]
 
 df_calc.to_csv("./scripts/UseData.csv", index=False)
 
