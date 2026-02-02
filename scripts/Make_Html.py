@@ -12,12 +12,38 @@ table_html = df.to_html(
     classes="data-table"
 )
 
-df2 = pd.read_csv("./docs/GetData.csv")
+#グラフ用データの格納
+df2 = pd.read_csv("./docs/UseData.csv")
 
+#plotlyの作成
 fig = px.line(
     df2,
-    x=df2.columns[0],
-    y=df2.columns[1]
+    x="GameCount",
+    y="Samai",
+    markers=True,
+    title="差枚グラフ"
+)
+
+#x軸に負の数を表示させない
+fig.update_xaxes(
+    range=[
+        0,
+        df2["GameCount"].max()*1.0
+    ],
+    title="ゲーム数"
+)
+
+#y軸の表示倍率をフレキシブルに
+
+y_max = df2["Samai"].max()
+y_min = df2["Samai"].min()
+
+fig.update_yaxes(
+    range=[
+        min(0,y_min * 1.2),
+        y_max * 1.2
+    ],
+    title="差枚"
 )
 
 #graph_htmlにfigureを格納
@@ -42,7 +68,7 @@ html = f"""<!DOCTYPE html>
 
 {table_html}
 
-<h2>グラフ</h2>
+<h2>差枚推移グラフ</h2>
 
 {graph_html}
 
