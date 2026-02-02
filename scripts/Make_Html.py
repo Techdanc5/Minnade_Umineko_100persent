@@ -3,7 +3,7 @@ import os
 import plotly.express as px
 
 #総計データとして載せる為のデータを格納
-df = pd.read_csv("docs/WebData.csv")
+df = pd.read_csv("./docs/WebData.csv")
 
 table_html = df.to_html(
     index=False,
@@ -11,7 +11,7 @@ table_html = df.to_html(
     classes="data-table"
 )
 
-df2 = pd.read_csv("UseData.csv")
+df2 = pd.read_csv("./scripts/GetData.csv")
 
 fig = px.line(
     df2,
