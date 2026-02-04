@@ -33,7 +33,7 @@ df2["Samai_CumSum"] = df2["Samai"].cumsum()
 #plotlyの作成
 fig = px.line(
     x=df2["GameCount_CumSum"],
-    y=df2["SamaiCumSum"],
+    y=df2["Samai_CumSum"],
     markers=True,
     title="差枚グラフ"
 )
