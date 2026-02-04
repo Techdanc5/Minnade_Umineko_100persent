@@ -32,8 +32,9 @@ df2["Samai_CumSum"] = df2["Samai"].cumsum()
 
 #plotlyの作成
 fig = px.line(
-    x=df2["GameCount_CumSum"],
-    y=df2["Samai_CumSum"],
+    df2,
+    x="GameCount_CumSum",
+    y="Samai_CumSum",
     markers=True,
     title="差枚グラフ"
 )
@@ -42,7 +43,7 @@ fig = px.line(
 fig.update_xaxes(
     range=[
         0,
-        df2["GameCount"].max()*1.0
+        df2["GameCount_CumSum"].max()*1.0
     ],
     fixedrange=True,
     title="ゲーム数"
@@ -50,12 +51,12 @@ fig.update_xaxes(
 
 #y軸の表示倍率をフレキシブルに
 y_max = df2["Samai_CumSum"].max()
-y_min = df2["Samai_CumCum"].min()
+y_min = df2["Samai_CumSum"].min()
 
 fig.update_yaxes(
     range=[
         min(0,y_min * 1.2),
-        y_max * 1.2
+        max(0,y_max * 1.2)
     ],
     fixedrange=True,
     title="差枚"
@@ -69,6 +70,7 @@ fig.update_traces(
     ),
     marker=dict(
         size=5,
+        symbol="circle",
         color="#000000"
     )      # 点を大きく
 )
