@@ -81,16 +81,15 @@ graph_html = fig.to_html(
     include_plotlyjs="cdn"
 )
 
-#iframe_htmlにgoogleフォームを格納
+#link_htmlにgoogleフォームを格納
 
-iframe_html ="""
+link_html ="""
 <h2>データ入力フォーム</h2>
-<iframe
-    src="https://docs.google.com/forms/d/1NExT6azlKT8SayGZiDMrFOHFKJg8w1iKwrTnW6ZLiwY/edit"
-    width="80%"
-    height="700"
-    style="border:1px soild #aaa;">
-</iframe>
+<p>
+    <a href="https://docs.google.com/forms/d/1NExT6azlKT8SayGZiDMrFOHFKJg8w1iKwrTnW6ZLiwY/edit" target="_blank">
+    データ投稿はこちらから！
+    </a>
+</p>
 """
 
 
@@ -113,7 +112,7 @@ html = f"""<!DOCTYPE html>
 
 {graph_html}
 
-{iframe_html}
+{link_html}
 
 </body>
 </html>
