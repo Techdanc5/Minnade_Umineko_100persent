@@ -86,7 +86,7 @@ graph_html = fig.to_html(
 link_html ="""
 <h2>データ入力フォーム</h2>
 <p>
-    <a href="https://docs.google.com/forms/d/1NExT6azlKT8SayGZiDMrFOHFKJg8w1iKwrTnW6ZLiwY/edit" target="_blank">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScaH-oaTrqQIII0vffofLyyG26bS2CwWqkRKXUTfm7P4foaQQ/viewform" target="_blank">
     データ投稿はこちらから！
     </a>
 </p>
